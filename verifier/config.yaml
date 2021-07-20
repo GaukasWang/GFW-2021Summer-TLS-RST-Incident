@@ -1,0 +1,11 @@
+port: 443
+domain: esp.tunnel.work
+subdomain:
+- us-aws-1
+- us-qdncn2-1
+- us-cn2gia-1
+- jp-aws-1
+- jp-iij-1
+- sg-aws-1
+- sg-sggs-1
+- kr-aws-1
