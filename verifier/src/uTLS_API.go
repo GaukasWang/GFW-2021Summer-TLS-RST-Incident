@@ -13,7 +13,7 @@ import (
 )
 
 var (
-	dialTimeout = time.Duration(15) * time.Second
+	dialTimeout = time.Duration(3) * time.Second
 )
 
 func httpGetOverConn(conn net.Conn, alpn string, hostname string) (*http.Response, error) {

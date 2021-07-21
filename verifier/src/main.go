@@ -20,6 +20,23 @@ type Conf struct {
 	Subdomain []string `yaml:"subdomain"`
 }
 
+type Stat struct {
+	Cntr            uint
+	Elapse_ms       uint
+	TCP_TIMEOUT     uint
+	HANDSHAKE_ERR   uint
+	APPLYPRESET_ERR uint
+	BAD_ALPN        uint
+	SUCCESS         uint
+}
+
+func printStat(statMap map[string]Stat) {
+	fmt.Println("HOSTNAME\tTIMEOUT\tHANDSHAKE\tPRESET\tALPN\tSUCCESS\tAVGLAT")
+	for k, v := range statMap {
+		fmt.Printf("%s\t%d\t%d\t\t%d\t%d\t%d\t%d\n", k, v.TCP_TIMEOUT, v.HANDSHAKE_ERR, v.APPLYPRESET_ERR, v.BAD_ALPN, v.SUCCESS, v.Elapse_ms/v.Cntr)
+	}
+}
+
 func usage(CustomInfo string) {
 	fmt.Println("Usage: verifier config.yaml ITERATION SLEEP_MS")
 	panic(CustomInfo)
@@ -63,6 +80,7 @@ func main() {
 
 	for chs_i, chspecgen := range ClientHelloSpecsGen {
 		fmt.Printf("=== ClientHello Spec #%d ===\n", chs_i)
+		m := make(map[string]Stat)
 		for i := uint(0); i < iter; i++ {
 			for _, sub := range myConf.Subdomain {
 				chspec := chspecgen()
@@ -71,13 +89,42 @@ func main() {
 				start_t := time.Now()
 				_, err := TestHTTPSHandshake(hostname, addr, chspec)
 				elapse_ms := time.Since(start_t) / (1000 * 1000)
-				if err != nil {
-					fmt.Printf("%s %s %d\n", sub, err, elapse_ms)
+
+				temp := Stat{}
+				if entry, ok := m[sub]; ok {
+					// Key Exists
+					temp = entry
 				} else {
-					fmt.Printf("%s SUCCESS %d\n", sub, elapse_ms)
+					// New key in map
+					temp = Stat{
+						Cntr:            0,
+						Elapse_ms:       0,
+						TCP_TIMEOUT:     0,
+						HANDSHAKE_ERR:   0,
+						APPLYPRESET_ERR: 0,
+						BAD_ALPN:        0,
+						SUCCESS:         0,
+					}
 				}
+				temp.Cntr += 1
+				temp.Elapse_ms += uint(elapse_ms)
+				switch err {
+				case errDialTimeout:
+					temp.TCP_TIMEOUT += 1
+				case errHandshake:
+					temp.HANDSHAKE_ERR += 1
+				case errApplyPreset:
+					temp.APPLYPRESET_ERR += 1
+				case errALPNUnsupported:
+					temp.BAD_ALPN += 1
+				default: // nil
+					temp.SUCCESS += 1
+				}
+				m[sub] = temp
+
 				time.Sleep(time.Duration(sleep_ms) * time.Millisecond)
 			}
 		}
+		printStat(m)
 	}
 }
