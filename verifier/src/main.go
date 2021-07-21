@@ -38,7 +38,7 @@ func printStat(statMap map[string]Stat) {
 }
 
 func usage(CustomInfo string) {
-	fmt.Println("Usage: verifier config.yaml ITERATION SLEEP_MS")
+	fmt.Println("Usage: verify config.yaml ITERATION SLEEP_MS")
 	panic(CustomInfo)
 }
 
