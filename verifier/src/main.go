@@ -31,9 +31,9 @@ type Stat struct {
 }
 
 func printStat(statMap map[string]Stat) {
-	fmt.Println("HOSTNAME\tTIMEOUT\tHANDSHAKE\tPRESET\tALPN\tSUCCESS\tAVGLAT")
+	fmt.Println("HOSTNAME\tSUCCESS\tTIMEOUT\tHANDSHAKE\tPRESET\tALPN\tAVGLAT")
 	for k, v := range statMap {
-		fmt.Printf("%s\t%d\t%d\t\t%d\t%d\t%d\t%d\n", k, v.TCP_TIMEOUT, v.HANDSHAKE_ERR, v.APPLYPRESET_ERR, v.BAD_ALPN, v.SUCCESS, v.Elapse_ms/v.Cntr)
+		fmt.Printf("%s\t%d\t%d\t%d\t\t%d\t%d\t%d\n", k, v.SUCCESS, v.TCP_TIMEOUT, v.HANDSHAKE_ERR, v.APPLYPRESET_ERR, v.BAD_ALPN, v.Elapse_ms/v.Cntr)
 	}
 }
 
