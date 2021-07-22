@@ -27,7 +27,7 @@ Starting in 2021 June, the Great Firewall, operated by the Chinese government, s
 - GFW **does not show the ability to identify TLS proxy traffics** from normal HTTPS web browsing traffics **in real-time**.
 - GFW **isn't utilizing a purely fingerprint-based discrimination**. We don't know if fingerprint matters in current state but it is not a major decision factor.
 - Statistics gives **a strong signal about a backend IP reputation system**. This may indicate that GFW is analyzing the TLS traffic and there exists difference between proxy traffic and real web browsing traffic.
-- GFW **isn't incorporating SNI sniffing check** in this attack.
+- Statistics gives **no sign about SNI sniffing** in this attack.
 
 ## Credits 
 
