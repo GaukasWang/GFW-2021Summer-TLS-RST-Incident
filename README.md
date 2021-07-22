@@ -1,5 +1,13 @@
 # GFW-2021Summer-TLS-Proxy-Attack
-Thoughts, discussions, and clarifications on the attack against TLS Proxies initiated by GFW in 2021 Summer (June-July)
+
+Thoughts, discussions, and clarifications on the attack against TLS Proxies initiated by GFW in 2021 Summer (June-July). 
+
+This is an ongoing incident, thus all information provided here is subjected to change.
+
+## Latest Status
+
+07/22/2021 18:36 UTC
+- This attack is no longer active according to my (only) test node. You are welcomed to provide any information about this incident.
 
 ## Background
 
