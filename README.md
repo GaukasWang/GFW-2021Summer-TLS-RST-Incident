@@ -20,14 +20,17 @@ Starting in 2021 June, the Great Firewall, operated by the Chinese government, s
 - **Latency (ms):** 65, 69, 93, 191, 63, 199, 131, 133
 - **Packet loss:** 8%, 12%, 2%, 0%, 0%, 0%, 0%, 0%
 
+<img src="https://raw.githubusercontent.com/Gaukas/GFW-2021Summer-TLS-Proxy-Attack/master/data/SNI_verification.png">
+
 ## Rough conclusion
 
 - GFW **does not show the ability to identify TLS proxy traffics** from normal HTTPS web browsing traffics **in real-time**.
 - GFW **isn't utilizing a purely fingerprint-based discrimination**. We don't know if fingerprint matters in current state but it is not a major decision factor.
 - Statistics gives **a strong signal about a backend IP reputation system**. This may indicate that GFW is analyzing the TLS traffic and there exists difference between proxy traffic and real web browsing traffic.
+- GFW **isn't incorporating SNI sniffing check** in this attack.
 
 ## Credits 
 
-- [@ewust](https://github.com/ewust)
+- [@ewust](https://github.com/ewust), [@jhalderm](https://github.com/jhalderm), [@jmwample](https://github.com/jmwample)
 - [Refraction Networking/uTLS](https://github.com/refraction-networking/utls)
 - [TLSfingerprint.io](https://tlsfingerprint.io/)
