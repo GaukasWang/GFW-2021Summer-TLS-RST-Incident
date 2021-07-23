@@ -1,10 +1,13 @@
-# GFW-2021Summer-TLS-Proxy-Attack
+# GFW-2021Summer-TLS-Attack
 
-Thoughts, discussions, and clarifications on the attack against TLS Proxies initiated by GFW in 2021 Summer (June-July). 
+Thoughts, discussions, and clarifications on the attack against TLS possibly initiated by GFW in 2021 Summer (June-July). 
 
 This is an ongoing incident, thus all information provided here is subjected to change.
 
 ## Latest Status
+
+07/22/2021 0:33 UTC
+- Still cannot reproduce the issue. According to 3rd-party source, the reset happens on only AS4134. AS4809 isn't impacted. This guess matches our data.
 
 07/22/2021 18:36 UTC
 - This attack is no longer active according to my (only) test node. You are welcomed to provide any information about this incident.
@@ -36,6 +39,7 @@ Starting in 2021 June, the Great Firewall, operated by the Chinese government, s
 - GFW **isn't utilizing a purely fingerprint-based discrimination**. We don't know if fingerprint matters in current state but it is not a major decision factor.
 - Statistics gives **a strong signal about a backend IP reputation system**. This may indicate that GFW is analyzing the TLS traffic and there exists difference between proxy traffic and real web browsing traffic.
 - Statistics gives **no sign about SNI sniffing** in this attack.
+- (Needs confirmation) RST happens only on AS4134, while AS4809 isn't impacted. (Note: Our only good server, `us-cn2gia-1` is the only one routing over AS4809.)
 
 ## Credits 
 
