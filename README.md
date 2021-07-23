@@ -1,4 +1,4 @@
-# GFW-2021Summer-TLS-Attack
+# GFW-2021Summer-TLS-RST-Incident
 
 Thoughts, discussions, and clarifications on the attack against TLS possibly initiated by GFW in 2021 Summer (June-July). 
 
