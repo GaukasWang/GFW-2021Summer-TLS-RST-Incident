@@ -1,10 +1,15 @@
 # GFW-2021Summer-TLS-RST-Incident
 
-Thoughts, discussions, and clarifications on the attack against TLS possibly initiated by GFW in 2021 Summer (June-July). 
+Thoughts, discussions, and clarifications on the abnormal RST packet injection against TLS connections, which is possibly initiated by GFW, in 2021 Summer (June-July). 
 
-This is an ongoing incident, thus all information provided here is subjected to change.
+The incident is now concluded. Therefore, no more status update until the behavior is observed again. 
+
+You are welcomed to provide your insights and data, if any.
 
 ## Latest Status
+
+07/28/2021 16:00 UTC
+- The behavior has been inactive for several days. We are concluding the incident. 
 
 07/23/2021 16:30 UTC
 - The behavior is back on only 1 server I have control over. 
@@ -23,9 +28,9 @@ Starting in 2021 June, the Great Firewall, operated by the Chinese government, s
 
 ## Initial guesses
 
-- GFW can analyze the request sent from TLS proxy clients to the server.
+- The attacker can analyze the request sent from TLS proxy clients to the server.
   - False. The RST happens during the TLS handshake where no actual proxy-like behavior has started.
-- GFW checks against TLS Fingerprints exposed in ClientHello and selectively attacks against infamous TLS fingerprints or allow only clients with famous TLS fingerprints to pass.
+- The attacker checks against TLS Fingerprints exposed in ClientHello and selectively attacks against infamous TLS fingerprints or allow only clients with famous TLS fingerprints to pass.
   - False. Forging the TLS fingerprint from a well-known browser does not improve the connectivity.
 
 ## Data (n=50)
@@ -46,11 +51,11 @@ Starting in 2021 June, the Great Firewall, operated by the Chinese government, s
 
 ## Rough conclusion
 
-- GFW **does not show the ability to identify TLS proxy traffics** from normal HTTPS web browsing traffics **in real-time**.
-- GFW **isn't utilizing a purely fingerprint-based discrimination**. We don't know if fingerprint matters in current state but it is not a major decision factor.
-- Statistics gives **a strong signal about a backend IP reputation system**. This may indicate that GFW is analyzing the TLS traffic and there exists difference between proxy traffic and real web browsing traffic.
+- The attacker **does not show the ability to identify TLS proxy traffics** from normal HTTPS web browsing traffics **in real-time**.
+- The attacker **isn't utilizing a purely fingerprint-based discrimination**. We don't know if fingerprint matters in current state but it is not a major decision factor.
+- Statistics gives **a strong signal about a backend IP reputation system**. This may indicate that the attacker is analyzing history TLS traffic model.
 - Statistics gives **no sign about SNI sniffing** nor **server-side ALPN discrimination** in this attack.
-- (Needs confirmation) RST happens only on AS4134, while AS4809 isn't impacted. (Note: Our only good server, `us-cn2gia-1` is the only one routing over AS4809.)
+- (Needs confirmation) RST happens only on AS4134, while AS4809 isn't impacted. (Note: Our only good server, `us-cn2gia-1` is the only one guaranteeing the route over AS4809.)
 
 ## Credits 
 
