@@ -54,7 +54,7 @@ func httpGetOverConn(conn net.Conn, alpn string, hostname string) (*http.Respons
 func TestHTTPSHandshake(hostname string, addr string, clientHelloSpec tls.ClientHelloSpec) (*http.Response, error) {
 	tcpConn, err := net.DialTimeout("tcp", addr, dialTimeout)
 	if err != nil {
-		fmt.Printf("net.Dial() failed: %+v\n", err)
+		// fmt.Printf("net.Dial() failed: %+v\n", err)
 		return nil, errDialTimeout
 	}
 
