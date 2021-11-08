@@ -8,6 +8,9 @@ You are welcomed to provide your insights and data, if any.
 
 ## Latest Status
 
+11/08/2021 05:30 UTC
+- The behavior is again observed on some(?) servers. We believe it is related to **China Communist Party's Sixth Plenary Session of the 19th Central Committee** (Nov 8-11)
+
 07/28/2021 16:00 UTC
 - The behavior has been inactive for several days. We are concluding the incident. 
 
